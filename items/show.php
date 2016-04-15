@@ -4,6 +4,11 @@ $db = get_db();
 $frontpage = $db->getTable('NewspapersFrontPage')->findByItemId($item->id);
 $issue = $db->getTable('NewspapersIssue')->find($frontpage->issue_id);
 $newspaper = $db->getTable('NewspapersNewspaper')->find($issue->newspaper_id);
+$files = $item->Files;
+$altoOmekaFile = $files[0];
+$svgOmekaFile = $files[1];
+$svgPath = FILES_DIR . '/' . $svgOmekaFile->getStoragePath();
+$svg = file_get_contents($svgPath);
 ?>
 
 <div id="primary">
@@ -23,17 +28,28 @@ $newspaper = $db->getTable('NewspapersNewspaper')->find($issue->newspaper_id);
     <div id='front-page-data'>
         <h2>Front page data</h2>
         <p>Columns: <?php echo $frontpage->columns; ?> </p>
+        <p>Page Width: <?php echo $frontpage->page_width; ?> </p>
+        <p>Pages: <?php echo $issue->pages; ?></p>
         
     </div>
 
 
-    <h3><?php echo __('Files'); ?></h3>
-    <div id="item-images">
-         <?php echo files_for_item(); ?>
+    <div class='sotn-images'>
+        <div class='sotn-direct-links'>
+            <a href="<?php echo metadata($altoOmekaFile, 'uri'); ?>"><?php echo __('LoC ALTO'); ?></a>
+            <a href="<?php echo metadata($svgOmekaFile, 'uri'); ?>"><?php echo __('SVG'); ?></a>
+        </div>
+        
+        <iframe class='ca-container' src='<?php echo $frontpage->pdf_url; ?>' ></iframe>
+        
+        <div class='svg'>
+            
+            <?php echo $svg; ?>
+        </div>
+        
+        
     </div>
-
-
-
+    <div style='clear:both'></div>
      <!-- The following prints a list of all tags associated with the item -->
     <?php if (metadata('item','has tags')): ?>
     <div id="item-tags" class="element">
