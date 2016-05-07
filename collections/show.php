@@ -1,13 +1,13 @@
 <?php
 $db = get_db();
+
+$npTable = $db->getTable('NewspapersNewspaper');
+
 $collectionTitle = strip_formatting(metadata('collection', array('Dublin Core', 'Title')));
-$newspaper = $db->getTable('NewspapersNewspaper')->findByCollection($collection->id);
-$issues = $db->getTable('NewspapersIssue')->findBy(array('newspaper_id' => $newspaper->id));
-$frontPages = array();
-foreach($issues as $issue) {
-    $frontPages = array_merge($frontPages, $db->getTable('NewspapersFrontPage')->findBy(array('issue_id' => $issue->id)));
-    
-}
+$newspaper = $npTable->findByCollection($collection->id);
+echo $newspaper->id;
+
+$stats = $npTable->getStats(array('newspaperIds' => array($newspaper->id)));
 
 /**
  * Find the minimum and maximum for a column value

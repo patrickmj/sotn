@@ -1,8 +1,18 @@
 <?php echo head(array('title' => metadata('item', array('Dublin Core', 'Title')),'bodyclass' => 'items show')); ?>
 <?php 
+
+require(NEWSPAPERS_PLUGIN_DIR . '/helpers/Newspapers_View_Helper_NewspaperImageMarkup.php');
+
+//$fileMarkup = new Omeka_View_Helper_FileMarkup;
+$newspapersFileMarkup = new Newspapers_View_Helper_NewspaperImageMarkup;
+
+
+
+
 $db = get_db();
-$frontpage = $db->getTable('NewspapersFrontPage')->findByItemId($item->id);
-$issue = $db->getTable('NewspapersIssue')->find($frontpage->issue_id);
+$frontPageTable = $db->getTable('NewspapersFrontPage');
+$frontPage = $frontPageTable->findByItemId($item->id);
+$issue = $db->getTable('NewspapersIssue')->find($frontPage->issue_id);
 $newspaper = $db->getTable('NewspapersNewspaper')->find($issue->newspaper_id);
 $files = $item->Files;
 $altoOmekaFile = $files[0];
@@ -24,14 +34,13 @@ $svg = file_get_contents($svgPath);
    <div class='front-page'>
    <?php echo metadata('item', array('Dublin Core', 'Title'));?>
    </div>
-   
-    <div id='front-page-data'>
-        <h2>Front page data</h2>
-        <p>Columns: <?php echo $frontpage->columns; ?> </p>
-        <p>Page Width: <?php echo $frontpage->page_width; ?> </p>
-        <p>Pages: <?php echo $issue->pages; ?></p>
-        
-    </div>
+   <?php echo $this->partial('front-page-stats.php', 
+           array('frontPage' => $frontPage,
+                 'issue'     => $issue,
+                 'newspapersFileMarkup' => $newspapersFileMarkup
+                   ));
+   ?>
+
 
 
     <div class='sotn-images'>
@@ -40,7 +49,7 @@ $svg = file_get_contents($svgPath);
             <a href="<?php echo metadata($svgOmekaFile, 'uri'); ?>"><?php echo __('SVG'); ?></a>
         </div>
         
-        <iframe class='ca-container' src='<?php echo $frontpage->pdf_url; ?>' ></iframe>
+        <iframe class='ca-container' src='<?php echo $frontPage->pdf_url; ?>' ></iframe>
         
         <div class='svg'>
             

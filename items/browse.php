@@ -1,6 +1,10 @@
 <?php
 $pageTitle = __('Browse Items');
+$db = get_db();
+
 echo head(array('title'=>$pageTitle,'bodyclass' => 'items browse'));
+
+$frontPageTable = get_db()->getTable('NewspapersFrontPage');
 ?>
 
 <h1><?php echo $pageTitle;?> <?php echo __('(%s total)', $total_results); ?></h1>
@@ -27,20 +31,24 @@ $sortLinks[__('Date Added')] = 'added';
 <?php endif; ?>
 
 <?php foreach (loop('items') as $item): ?>
+
+<?php 
+    $frontPage = $db->getTable('NewspapersFrontPage')->findByItemId($item->id); 
+    $issue = $db->getTable('NewspapersIssue')->find($frontPage->issue_id);
+
+?>
+
 <div class="item record">
     <h2><?php echo link_to_item(metadata('item', array('Dublin Core', 'Title')), array('class'=>'permalink')); ?></h2>
     <div class="item-meta">
-    <?php if (metadata('item', 'has files')): ?>
-    <div class="item-img">
-        <?php echo link_to_item(item_image('square_thumbnail')); ?>
-    </div>
-    <?php endif; ?>
-
-    <?php if ($description = metadata('item', array('Dublin Core', 'Description'), array('snippet'=>250))): ?>
-    <div class="item-description">
-        <?php echo $description; ?>
-    </div>
-    <?php endif; ?>
+   <?php echo $this->partial('front-page-stats.php', 
+           array(
+               'frontPage' => $frontPage,
+               'issue'     => $issue,
+                   
+                   
+           ));
+   ?>
 
     <?php if (metadata('item', 'has tags')): ?>
     <div class="tags"><p><strong><?php echo __('Tags'); ?>:</strong>
@@ -56,10 +64,6 @@ $sortLinks[__('Date Added')] = 'added';
 
 <?php echo pagination_links(); ?>
 
-<div id="outputs">
-    <span class="outputs-label"><?php echo __('Output Formats'); ?></span>
-    <?php echo output_format_list(false); ?>
-</div>
 
 <?php fire_plugin_hook('public_items_browse', array('items'=>$items, 'view' => $this)); ?>
 
