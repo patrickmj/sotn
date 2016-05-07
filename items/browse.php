@@ -45,8 +45,6 @@ $sortLinks[__('Date Added')] = 'added';
            array(
                'frontPage' => $frontPage,
                'issue'     => $issue,
-                   
-                   
            ));
    ?>
 
