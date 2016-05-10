@@ -1,57 +1,42 @@
 
-
-<h3>Issues: <?php echo $stats['issues_count']; ?></h3>
-
 <div class='newspaper-data-wrapper newspapers'>
     <div>
-        <h3>Average Columns: <?php echo round($stats['avgColumns']); ?></h3>
+        <p>Average Columns: <?php echo round($stats['avgColumns']); ?></p>
+    </div>
+    <div>
+        <p>Max Columns: <?php echo $stats['maxColumns']; ?></p>
+    </div>
+    <div>
+        <p>Min Columns: <?php echo $stats['minColumns']; ?></p>
+    </div>
+    <div>
+        <p>Columns SD: <?php echo $stats['stdColumns']; ?></p>
     </div>
 
     <div>
-        <h3>Max Columns: <?php echo $stats['maxColumns']; ?></h3>
-    </div>
-    
-    
-    <div>
-        <h3>Min Columns: <?php echo $stats['minColumns']; ?></h3>
-    </div>
-    
-    <div>
-        <h3>Columns SD: <?php echo $stats['stdColumns']; ?></h3>
-    </div>
-
-    
-    <div>
-        <h3>Average Width: <?php echo $stats['avgPageWidth']; ?></h3>
-    </div>
-
-    
-    <div>
-        <h3>Min Width: <?php echo $stats['minPageWidth']; ?></h3>
-    </div>
-    
-    
-    <div>
-        <h3>Max Width: <?php echo $stats['maxPageWidth']; ?></h3>
+        <p>Average Width: <?php echo $stats['avgPageWidth']; ?></p>
     </div>
     <div>
-        <h3>Page Width SD: <?php echo $stats['stdPageWidth']; ?></h3>
+        <p>Min Width: <?php echo $stats['minPageWidth']; ?></p>
+    </div>
+    <div>
+        <p>Max Width: <?php echo $stats['maxPageWidth']; ?></p>
+    </div>
+    <div>
+        <p>Width SD: <?php echo $stats['stdPageWidth']; ?></p>
     </div>    
     
     <div>
-        <h3>Average Height: <?php echo $stats['avgPageHeight']; ?></h3>
-    </div>
-    
-    
-    <div>
-        <h3>Min Height: <?php echo $stats['minPageHeight']; ?></h3>
-    </div>
-    
-    <div>
-        <h3>Max Height: <?php echo $stats['maxPageHeight']; ?></h3>
+        <p>Average Height: <?php echo $stats['avgPageHeight']; ?></p>
     </div>
     <div>
-        <h3>Page Height SD: <?php echo $stats['stdPageHeight']; ?></h3>
+        <p>Min Height: <?php echo $stats['minPageHeight']; ?></p>
+    </div>
+    <div>
+        <p>Max Height: <?php echo $stats['maxPageHeight']; ?></p>
+    </div>
+    <div>
+        <p>Height SD: <?php echo $stats['stdPageHeight']; ?></p>
     </div>
     
 </div>

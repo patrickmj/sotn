@@ -2211,16 +2211,6 @@ footer nav + p {
 }
 
 
-div.newspaper-data-wrapper {
-    display: inline;
-    width: 100% !important;
-}
-
-div.newspaper-data-wrapper > div {
-    display: inline-block;
-    width: 22%;
-}
-
 
 
 

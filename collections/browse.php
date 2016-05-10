@@ -1,9 +1,22 @@
 <?php
-$pageTitle = __('Browse Collections');
+$pageTitle = __('Browse Newspapers');
 echo head(array('title'=>$pageTitle,'bodyclass' => 'collections browse'));
+$db = get_db();
+
+$newspapersTable = $db->getTable('NewspapersNewspaper');
+
+$newspaperIds = array();
+foreach (loop('collections') as $collection) {
+    $newspaper = $newspapersTable->findByCollection($collection->id);
+    $newspaperIds[] = $newspaper->id;
+    
+}
+
+$allStats = $newspapersTable->getStats(array('newspaperIds' => $newspaperIds));
 ?>
 
 <h1><?php echo $pageTitle; ?> <?php echo __('(%s total)', $total_results); ?></h1>
+
 <?php echo pagination_links(); ?>
 
 <?php
@@ -14,8 +27,19 @@ $sortLinks[__('Date Added')] = 'added';
     <span class="sort-label"><?php echo __('Sort by: '); ?></span><?php echo browse_sort_links($sortLinks); ?>
 </div>
 
-<?php foreach (loop('collections') as $collection): ?>
+<?php 
 
+    echo $this->partial('newspapers-stats.php', 
+           array(
+               'stats' => $allStats,
+           ));
+?>
+
+<?php foreach (loop('collections') as $collection): ?>
+<?php 
+    $newspaper = $newspapersTable->findByCollection($collection->id);
+    $stats = $newspapersTable->getStats(array('newspaperIds' => array($newspaper->id)));
+?>
 <div class="collection record">
 
     <h2><?php echo link_to_collection(); ?></h2>
@@ -26,11 +50,17 @@ $sortLinks[__('Date Added')] = 'added';
     
     <div class="collection-meta">
 
-    <?php if (metadata('collection', array('Dublin Core', 'Description'))): ?>
     <div class="collection-description">
-        <?php echo text_to_paragraphs(metadata('collection', array('Dublin Core', 'Description'), array('snippet'=>150))); ?>
+        
+        <?php 
+        
+            echo $this->partial('newspapers-stats.php', 
+                   array(
+                       'stats' => $stats,
+                   ));
+        ?>    
+    
     </div>
-    <?php endif; ?>
 
     <?php if ($collection->hasContributor()): ?>
     <div class="collection-contributors">

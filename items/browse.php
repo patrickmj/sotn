@@ -1,5 +1,5 @@
 <?php
-$pageTitle = __('Browse Items');
+$pageTitle = __('Browse Front Pages');
 $db = get_db();
 
 echo head(array('title'=>$pageTitle,'bodyclass' => 'items browse'));
@@ -13,8 +13,6 @@ $frontPageTable = get_db()->getTable('NewspapersFrontPage');
     <?php echo public_nav_items(); ?>
 </nav>
 
-<?php echo item_search_filters(); ?>
-
 <?php echo pagination_links(); ?>
 
 <?php if ($total_results > 0): ?>
@@ -22,7 +20,6 @@ $frontPageTable = get_db()->getTable('NewspapersFrontPage');
 <?php
 $sortLinks[__('Title')] = 'Dublin Core,Title';
 $sortLinks[__('Creator')] = 'Dublin Core,Creator';
-$sortLinks[__('Date Added')] = 'added';
 ?>
 <div id="sort-links">
     <span class="sort-label"><?php echo __('Sort by: '); ?></span><?php echo browse_sort_links($sortLinks); ?>

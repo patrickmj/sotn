@@ -1,23 +1,23 @@
 <?php
-
-$props = array();
-$imageType = 'square_thumbnail';
+$statsStyle = '';
+if (isset($statsProps)) {
+    
+    foreach($statsProps as $key => $value) 
+        $statsStyle .= "$key: $value; ";
+}
 
 ?>
 
-
-<div class='newspaper-data-wrapper'>
-
-    <div style='float: left; width: 300px;'>
+<div class='newspaper-data-wrapper front-page'>
+    <div class='svg'>
         <?php echo $frontPage->dimensionsSvg(); ?>
     </div>
-
-    <ul>
-        <li>Dimensions: <?php echo $frontPage->page_width; ?> x <?php echo $frontPage->page_height; ?></li>
+    <ul class='stats' style="<?php echo $statsStyle; ?>">
+        <li>Width: <?php echo $frontPage->page_width; ?></li>
+        <li>Height: <?php echo $frontPage->page_height; ?></li>
         <li>Columns: <?php echo $frontPage->columns; ?></li>
         <li>Pages: <?php echo $issue->pages; ?></li>
-    
     </ul>
-
-
 </div>
+
+
