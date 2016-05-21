@@ -1,42 +1,39 @@
 
-<div class='newspaper-data-wrapper newspapers'>
-    <div>
-        <p>Average Columns: <?php echo round($stats['avgColumns']); ?></p>
-    </div>
-    <div>
-        <p>Max Columns: <?php echo $stats['maxColumns']; ?></p>
-    </div>
-    <div>
-        <p>Min Columns: <?php echo $stats['minColumns']; ?></p>
-    </div>
-    <div>
-        <p>Columns SD: <?php echo $stats['stdColumns']; ?></p>
-    </div>
 
-    <div>
-        <p>Average Width: <?php echo $stats['avgPageWidth']; ?></p>
-    </div>
-    <div>
-        <p>Min Width: <?php echo $stats['minPageWidth']; ?></p>
-    </div>
-    <div>
-        <p>Max Width: <?php echo $stats['maxPageWidth']; ?></p>
-    </div>
-    <div>
-        <p>Width SD: <?php echo $stats['stdPageWidth']; ?></p>
-    </div>    
+
+<table class='newspaper-data-wrapper newspapers'>
+    <tr>
+        <td></td>
+        <th>Columns</th>
+        <th>Width</th>
+        <th>Height</th>
+    </tr>
+    <tr class='avg'>
+        <td>Average</td>
+        <td><?php echo round($stats['avgColumns']); ?></td>
+        <td><?php echo $stats['avgPageWidth']; ?></td>
+        <td><?php echo $stats['avgPageHeight']; ?></td>
+    </tr>
+    <tr class='max'>
+        <td>Max</td>
+        <td><?php echo $stats['maxColumns']; ?></td>
+        <td><?php echo $stats['maxPageWidth']; ?></td>
+        <td><?php echo $stats['maxPageHeight']; ?></td>
+    </tr>
+    <tr class='min'>
+        <td>Min</td>
+        <td><?php echo $stats['minColumns']; ?></td>
+        <td><?php echo $stats['minPageWidth']; ?></td>
+        <td><?php echo $stats['minPageHeight']; ?></td>
+    </tr>
     
-    <div>
-        <p>Average Height: <?php echo $stats['avgPageHeight']; ?></p>
-    </div>
-    <div>
-        <p>Min Height: <?php echo $stats['minPageHeight']; ?></p>
-    </div>
-    <div>
-        <p>Max Height: <?php echo $stats['maxPageHeight']; ?></p>
-    </div>
-    <div>
-        <p>Height SD: <?php echo $stats['stdPageHeight']; ?></p>
-    </div>
-    
-</div>
+    <tr class='sd'>
+        <td>SD</td>
+        <td><?php echo $stats['stdColumns']; ?></td>
+        <td><?php echo $stats['stdPageWidth']; ?></td>
+        <td><?php echo $stats['stdPageHeight']; ?></td>
+    </tr>
+</table>
+
+
+

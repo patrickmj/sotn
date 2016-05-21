@@ -14,8 +14,6 @@ $frontPageTable = $db->getTable('NewspapersFrontPage');
 $frontPage = $frontPageTable->findByItemId($item->id);
 $issue = $db->getTable('NewspapersIssue')->find($frontPage->issue_id);
 $newspaper = $db->getTable('NewspapersNewspaper')->find($issue->newspaper_id);
-$files = $item->Files;
-$altoOmekaFile = $files[0];
 ?>
 
 <div id="primary">
@@ -32,7 +30,7 @@ $altoOmekaFile = $files[0];
    <?php echo metadata('item', array('Dublin Core', 'Title'));?>
    </div>
    
-   <a href="<?php echo metadata($altoOmekaFile, 'uri'); ?>"><?php echo __('LoC ALTO'); ?></a>
+   <a href="<?php echo str_replace('.pdf', '.xml', $frontPage->pdf_url); ?>"><?php echo __('LoC ALTO'); ?></a>
    <?php echo $this->partial('front-page-stats.php', 
            array('frontPage' => $frontPage,
                  'issue'     => $issue,
