@@ -23,11 +23,12 @@ $allStats = $newspapersTable->getStats(array('newspaperIds' => $newspaperIds));
 $sortLinks[__('Title')] = 'Dublin Core,Title';
 $sortLinks[__('Date Added')] = 'added';
 ?>
+<!-- 
 <div id="sort-links">
     <span class="sort-label"><?php echo __('Sort by: '); ?></span><?php echo browse_sort_links($sortLinks); ?>
 </div>
-
-<?php 
+ -->
+<?php
 
     echo $this->partial('newspapers-stats.php', 
            array(
@@ -43,24 +44,22 @@ $sortLinks[__('Date Added')] = 'added';
 <div class="collection record">
 
     <h2><?php echo link_to_collection(); ?></h2>
-
     <?php if ($collectionImage = record_image('collection', 'square_thumbnail')): ?>
         <?php echo link_to_collection($collectionImage, array('class' => 'image')); ?>
     <?php endif; ?>
-    
+
     <div class="collection-meta">
 
-    <div class="collection-description">
-        
-        <?php 
-        
-            echo $this->partial('newspapers-stats.php', 
-                   array(
-                       'stats' => $stats,
-                   ));
-        ?>    
-    
-    </div>
+        <div class="collection-description">
+            <?php
+                echo $this->partial('newspapers-stats.php', 
+                       array(
+                           'stats' => $stats,
+                           'newspaper' => $newspaper,
+                           'collection' => $collection,
+                       ));
+            ?>
+        </div>
 
     <?php if ($collection->hasContributor()): ?>
     <div class="collection-contributors">
@@ -70,9 +69,10 @@ $sortLinks[__('Date Added')] = 'added';
         </p>
     </div>
     <?php endif; ?>
-
-    <p class="view-items-link"><?php echo link_to_items_browse(__('Newspapers from %s', metadata('collection', array('Dublin Core', 'Title'))), array('collection' => metadata('collection', 'id'))); ?></p>
-
+    <div class='newspaper-links'>
+        <p class="chronam-linkback"><a target='_blank' href='<?php echo "http://chroniclingamerica.loc.gov/lccn/{$newspaper->lccn}"; ?>'>More info on Chronicling America</a></p>
+        <p class="view-items-link"><?php echo link_to_items_browse(__('Newspapers from %s', metadata('collection', array('Dublin Core', 'Title'))), array('collection' => metadata('collection', 'id'))); ?></p>
+    </div>
     <?php fire_plugin_hook('public_collections_browse_each', array('view' => $this, 'collection' => $collection)); ?>
 
     </div>

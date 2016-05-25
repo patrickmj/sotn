@@ -6,18 +6,30 @@ if (isset($statsProps)) {
         $statsStyle .= "$key: $value; ";
 }
 
+
+
 ?>
+
+<table class='stats' style="<?php echo $statsStyle; ?>">
+    <thead>
+        <th>Width</th>
+        <th>Height</th>
+        <th>Columns</th>
+        <th>Pages</th>
+    </thead>
+    <tbody>
+        <td><?php echo $frontPage->page_width; ?></td>
+        <td><?php echo $frontPage->page_height; ?></td>
+        <td><?php echo $frontPage->columns; ?></td>
+        <td><?php echo $issue->pages; ?></td>
+    </tbody>
+</table>
+
 
 <div class='newspaper-data-wrapper front-page'>
     <div class='svg'>
         <?php echo $frontPage->dimensionsSvg(); ?>
     </div>
-    <ul class='stats' style="<?php echo $statsStyle; ?>">
-        <li>Width: <?php echo $frontPage->page_width; ?></li>
-        <li>Height: <?php echo $frontPage->page_height; ?></li>
-        <li>Columns: <?php echo $frontPage->columns; ?></li>
-        <li>Pages: <?php echo $issue->pages; ?></li>
-    </ul>
 </div>
 
 

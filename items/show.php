@@ -1,5 +1,8 @@
-<?php echo head(array('title' => metadata('item', array('Dublin Core', 'Title')),'bodyclass' => 'items show')); ?>
-<?php 
+<?php
+echo head(array('title' => metadata('item', array('Dublin Core', 'Title')),'bodyclass' => 'items show')); 
+?>
+
+<?php
 
 require(NEWSPAPERS_PLUGIN_DIR . '/helpers/Newspapers_View_Helper_NewspaperImageMarkup.php');
 
@@ -14,6 +17,9 @@ $frontPageTable = $db->getTable('NewspapersFrontPage');
 $frontPage = $frontPageTable->findByItemId($item->id);
 $issue = $db->getTable('NewspapersIssue')->find($frontPage->issue_id);
 $newspaper = $db->getTable('NewspapersNewspaper')->find($issue->newspaper_id);
+
+$thumbDown = web_path_to('images/silk-icons/thumb_down.png');
+
 ?>
 
 <div id="primary">
@@ -29,16 +35,40 @@ $newspaper = $db->getTable('NewspapersNewspaper')->find($issue->newspaper_id);
    <div class='front-page'>
    <?php echo metadata('item', array('Dublin Core', 'Title'));?>
    </div>
+   <a target='_blank' href="<?php echo str_replace('.pdf', '', $frontPage->pdf_url); ?>">More info on Chronicling America</a>
+   <a target='_blank' href="<?php echo str_replace('.pdf', '.xml', $frontPage->pdf_url); ?>"><?php echo __('LoC ALTO'); ?></a>
    
-   <a href="<?php echo str_replace('.pdf', '.xml', $frontPage->pdf_url); ?>"><?php echo __('LoC ALTO'); ?></a>
-   <?php echo $this->partial('front-page-stats.php', 
-           array('frontPage' => $frontPage,
-                 'issue'     => $issue,
-                 'newspapersFileMarkup' => $newspapersFileMarkup,
-                 'statsProps' => array('left' => '100px'),
-                   ));
-   ?>
-   <iframe style='position: relative; width: 50%; height:550px; left: 300px; top: -100px' class='ca-container' src='<?php echo $frontPage->pdf_url; ?>' ></iframe>
+
+    <table class='stats'>
+        <thead>
+            <th>Pages</th>
+            <th>Width</th>
+            <th>Height</th>
+            <th>Columns</th>
+        </thead>
+        <tbody>
+            <td><?php echo $issue->pages; ?></td>
+            <td><?php echo $frontPage->page_width; ?></td>
+            <td><?php echo $frontPage->page_height; ?></td>
+            <td class='newspapers-columns'><?php echo $frontPage->columns; ?>
+                <span class='corrections-button'><img src='<?php echo $thumbDown; ?>'></img>Correct the data:</span>
+                <input type='text' size='2' class='columns-correction' />
+                <input type='hidden' class='frontpage-id' value='<?php echo $frontPage->id; ?>' />
+                <input type='hidden' class='newspaper-id' value='<?php echo $newspaper->id; ?>' />
+                <input type='hidden' class='original-columns' value='<?php echo $frontPage->columns; ?>' />
+            </td>
+        </tbody>
+    </table>
+    
+    <div style='clear:both'></div>
+    
+    <div class='newspaper-data-wrapper front-page'>
+        <div class='svg'>
+            <?php echo $frontPage->dimensionsSvg(); ?>
+        </div>
+    </div>
+       
+   <iframe class='ca-container' src='<?php echo $frontPage->pdf_url; ?>' ></iframe>
 
    
    <div style='clear:both'></div>
