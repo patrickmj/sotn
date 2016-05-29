@@ -1,36 +1,10 @@
 <?php
-echo head(array('title' => metadata('item', array('Dublin Core', 'Title')),'bodyclass' => 'items show')); 
-?>
-
-<?php
-
-require(NEWSPAPERS_PLUGIN_DIR . '/helpers/Newspapers_View_Helper_NewspaperImageMarkup.php');
-
-//$fileMarkup = new Omeka_View_Helper_FileMarkup;
-$newspapersFileMarkup = new Newspapers_View_Helper_NewspaperImageMarkup;
-
-
-
-
-$db = get_db();
-$frontPageTable = $db->getTable('NewspapersFrontPage');
-$frontPage = $frontPageTable->findByItemId($item->id);
-$issue = $db->getTable('NewspapersIssue')->find($frontPage->issue_id);
-$newspaper = $db->getTable('NewspapersNewspaper')->find($issue->newspaper_id);
-
-$thumbDown = web_path_to('images/silk-icons/thumb_down.png');
-
-?>
-
-<div id="primary">
-    <h1><?php echo metadata('item', array('Dublin Core','Title')); ?></h1>
-
-
-    <ul class="item-pagination navigation">
-        <li id="previous-item" class="previous"><?php echo link_to_previous_item_show('&larr; Previous Newspaper Front Page'); ?></li>
-        <li id="next-item" class="next"><?php echo link_to_next_item_show('Next Newspaper Front Page &rarr;'); ?></li>
-    </ul>
-    
+<div class="item record">
+    <?php
+    $title = metadata($item, array('Dublin Core', 'Title'));
+    $description = metadata($item, array('Dublin Core', 'Description'), array('snippet' => 150));
+    ?>
+    <h3><?php echo link_to($item, 'show', strip_formatting($title)); ?></h3>
    <?php if(metadata('item','Collection Name')): ?>
       <div id="collection" class="element">
         <h3><?php echo __('Newspaper'); ?></h3>
@@ -91,16 +65,4 @@ $thumbDown = web_path_to('images/silk-icons/thumb_down.png');
     <div id="item-metadata">
         <?php echo all_element_texts('item'); ?>
     </div>
-    
-    
-    <?php fire_plugin_hook('public_items_show', array('view' => $this, 'item' => $item)); ?>
-
-
-    <ul class="item-pagination navigation">
-        <li id="previous-item" class="previous"><?php echo link_to_previous_item_show('&larr; Previous Newspaper Front Page'); ?></li>
-        <li id="next-item" class="next"><?php echo link_to_next_item_show('Next Newspaper Front Page &rarr;'); ?></li>
-    </ul>
-
-</div> <!-- End of Primary. -->
-
- <?php echo foot(); ?>
+</div>

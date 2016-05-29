@@ -45,6 +45,13 @@ $sortLinks[__('Creator')] = 'Dublin Core,Creator';
            ));
    ?>
 
+
+    <div class='newspaper-data-wrapper front-page'>
+        <div class='svg'>
+            <?php echo $frontPage->dimensionsSvg(); ?>
+        </div>
+    </div>
+    
     <?php if (metadata('item', 'has tags')): ?>
     <div class="tags"><p><strong><?php echo __('Tags'); ?>:</strong>
         <?php echo tag_string('items'); ?></p>

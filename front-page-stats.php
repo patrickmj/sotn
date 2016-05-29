@@ -10,6 +10,21 @@ if (isset($statsProps)) {
 
 ?>
 
+<?php
+
+$baseFrontPageUrl = WEB_ROOT . '/items/browse';
+
+if ( isset($newspaper)) {
+    $baseFrontPageUrl .= "?newspaper_id=" . $newspaper->id . "&";
+} else {
+    $baseFrontPageUrl .= "?";
+}
+
+$columnsLink = $baseFrontPageUrl. 'columns='. $frontPage->columns;
+$pagesLink = $baseFrontPageUrl. 'pages='. $frontPage->pages;
+?>
+
+
 <table class='stats' style="<?php echo $statsStyle; ?>">
     <thead>
         <th>Width</th>
@@ -20,16 +35,11 @@ if (isset($statsProps)) {
     <tbody>
         <td><?php echo $frontPage->page_width; ?></td>
         <td><?php echo $frontPage->page_height; ?></td>
-        <td><?php echo $frontPage->columns; ?></td>
-        <td><?php echo $issue->pages; ?></td>
+        <td><a href='<?php echo $columnsLink; ?>'><?php echo $frontPage->columns; ?></a></td>
+        <td><a href='<?php echo $pagesLink; ?>'><?php echo $issue->pages; ?></a></td>
     </tbody>
 </table>
 
 
-<div class='newspaper-data-wrapper front-page'>
-    <div class='svg'>
-        <?php echo $frontPage->dimensionsSvg(); ?>
-    </div>
-</div>
 
 

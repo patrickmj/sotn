@@ -9,11 +9,27 @@
 <?php endif; ?>
 
 <?php
-//put in advanced search urls for these
-//stats + the newspaper?
-$maxColumnsLink = 'maxColumns';
-$minColumnsLink = 'minColumns';
-$avgColumnsLink = 'avgColumns';
+
+$baseFrontPageUrl = WEB_ROOT . '/items/browse';
+
+if ( isset($newspaper)) {
+    $baseFrontPageUrl .= "?newspaper_id=" . $newspaper->id . "&";
+} else {
+    $baseFrontPageUrl .= "?";
+}
+
+$maxColumnsLink = $baseFrontPageUrl. 'columns='. $stats['maxColumns'];
+$minColumnsLink = $baseFrontPageUrl. 'columns='. $stats['minColumns'];
+$avgColumnsLink = $baseFrontPageUrl. 'columns='. $stats['avgColumns'];
+
+$maxWidthLink = $baseFrontPageUrl. 'width='. $stats['maxPageWidth'];
+$minWidthLink = $baseFrontPageUrl. 'width='. $stats['minPageWidth'];
+$avgWidthLink = $baseFrontPageUrl. 'width='. $stats['avgPageWidth'];
+
+$maxHeightLink = $baseFrontPageUrl. 'columns='. $stats['maxPageHeight'];
+$minHeightLink = $baseFrontPageUrl. 'columns='. $stats['minPageHeight'];
+$avgHeightLink = $baseFrontPageUrl. 'columns='. $stats['avgPageHeight'];
+
 
 ?>
 
@@ -27,22 +43,21 @@ $avgColumnsLink = 'avgColumns';
 
     <tr class='max'>
         <td>Max</td>
-
         <td><a href='<?php echo $maxColumnsLink; ?>'><?php echo $stats['maxColumns']; ?></a></td>
-        <td><?php echo $stats['maxPageWidth']; ?></td>
-        <td><?php echo $stats['maxPageHeight']; ?></td>
+        <td><a href='<?php echo $maxWidthLink; ?>'><?php echo $stats['maxPageWidth']; ?></a></td>
+        <td><a href='<?php echo $maxHeightLink; ?>'><?php echo $stats['maxPageHeight']; ?></a></td>
     </tr>
     <tr class='min'>
         <td>Min</td>
         <td><a href='<?php echo $minColumnsLink; ?>'><?php echo $stats['minColumns']; ?></a></td>
-        <td><?php echo $stats['minPageWidth']; ?></td>
-        <td><?php echo $stats['minPageHeight']; ?></td>
+        <td><a href='<?php echo $minWidthLink; ?>'><?php echo $stats['minPageWidth']; ?></a></td>
+        <td><a href='<?php echo $minHeightLink; ?>'><?php echo $stats['minPageHeight']; ?></a></td>
     </tr>
     <tr class='avg'>
         <td>Average</td>
         <td><a href='<?php echo $avgColumnsLink; ?>'><?php echo round($stats['avgColumns']);?></a></td>
-        <td><?php echo $stats['avgPageWidth']; ?></td>
-        <td><?php echo $stats['avgPageHeight']; ?></td>
+        <td><a href='<?php echo $avgWidthLink; ?>'><?php echo $stats['avgPageWidth']; ?></a></td>
+        <td><a href='<?php echo $avgHeightLink; ?>'><?php echo $stats['avgPageHeight']; ?></a></td>
     </tr>
     <tr class='sd'>
         <td>Standard Deviation</td>
