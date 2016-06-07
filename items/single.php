@@ -1,11 +1,18 @@
 <?php
+$db = get_db();
+set_current_record('item', $item);
+$frontPage = $db->getTable('NewspapersFrontPage')->findByItemId($item->id);
+$issue = $db->getTable('NewspapersIssue')->find($frontPage->issue_id);
+$newspaper = $db->getTable('NewspapersNewspaper')->find($issue->newspaper_id);
+$thumbDown = web_path_to('images/silk-icons/thumb_down.png');
+?>
 <div class="item record">
     <?php
     $title = metadata($item, array('Dublin Core', 'Title'));
     $description = metadata($item, array('Dublin Core', 'Description'), array('snippet' => 150));
     ?>
     <h3><?php echo link_to($item, 'show', strip_formatting($title)); ?></h3>
-   <?php if(metadata('item','Collection Name')): ?>
+   <?php if(metadata($item,'Collection Name')): ?>
       <div id="collection" class="element">
         <h3><?php echo __('Newspaper'); ?></h3>
         <div class="element-text"><?php echo link_to_collection_for_item(); ?></div>
@@ -13,7 +20,7 @@
    <?php endif; ?>
    
    <div class='front-page'>
-   <?php echo metadata('item', array('Dublin Core', 'Title'));?>
+   <?php echo metadata($item, array('Dublin Core', 'Title'));?>
    </div>
    <a target='_blank' href="<?php echo str_replace('.pdf', '', $frontPage->pdf_url); ?>">More info on Chronicling America</a>
    <a target='_blank' href="<?php echo str_replace('.pdf', '/ocr.xml', $frontPage->pdf_url); ?>"><?php echo __('LoC ALTO'); ?></a>
@@ -54,7 +61,7 @@
    <div style='clear:both'></div>
    
      <!-- The following prints a list of all tags associated with the item -->
-    <?php if (metadata('item','has tags')): ?>
+    <?php if (metadata($item,'has tags')): ?>
     <div id="item-tags" class="element">
         <h3><?php echo __('Tags'); ?></h3>
         <div class="element-text"><?php echo tag_string('item'); ?></div>
@@ -63,6 +70,6 @@
 
     <!-- Items metadata -->
     <div id="item-metadata">
-        <?php echo all_element_texts('item'); ?>
+        <?php echo all_element_texts($item); ?>
     </div>
 </div>

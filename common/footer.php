@@ -13,6 +13,7 @@
         <?php endif; ?>
         <nav><?php echo public_nav_main()->setMaxDepth(0); ?></nav>
         <p><?php echo __('Proudly powered by <a href="http://omeka.org">Omeka</a>.'); ?></p>
+        <p>Proudly hosted by <a href='http://reclaimhosting.com'>Reclaim Hosting</a></p>
 
     </div><!-- end footer-content -->
 
