@@ -44,20 +44,20 @@ $avgHeightLink = $baseFrontPageUrl. 'columns='. $stats['avgPageHeight'];
     <tr class='max'>
         <td>Max</td>
         <td><a href='<?php echo $maxColumnsLink; ?>'><?php echo $stats['maxColumns']; ?></a></td>
-        <td><a href='<?php echo $maxWidthLink; ?>'><?php echo $stats['maxPageWidth']; ?></a></td>
-        <td><a href='<?php echo $maxHeightLink; ?>'><?php echo $stats['maxPageHeight']; ?></a></td>
+        <td><a href='<?php echo $maxWidthLink; ?>'><?php echo round($stats['maxPageWidth'] / 1200, 2); ?>"</a></td>
+        <td><a href='<?php echo $maxHeightLink; ?>'><?php echo round($stats['maxPageHeight'] / 1200, 2); ?>"</a></td>
     </tr>
     <tr class='min'>
         <td>Min</td>
         <td><a href='<?php echo $minColumnsLink; ?>'><?php echo $stats['minColumns']; ?></a></td>
-        <td><a href='<?php echo $minWidthLink; ?>'><?php echo $stats['minPageWidth']; ?></a></td>
-        <td><a href='<?php echo $minHeightLink; ?>'><?php echo $stats['minPageHeight']; ?></a></td>
+        <td><a href='<?php echo $minWidthLink; ?>'><?php echo round($stats['minPageWidth'] / 1200, 2); ?>"</a></td>
+        <td><a href='<?php echo $minHeightLink; ?>'><?php echo round($stats['minPageHeight'] / 1200, 2); ?>"</a></td>
     </tr>
     <tr class='avg'>
         <td>Average</td>
         <td><a href='<?php echo $avgColumnsLink; ?>'><?php echo round($stats['avgColumns']);?></a></td>
-        <td><a href='<?php echo $avgWidthLink; ?>'><?php echo $stats['avgPageWidth']; ?></a></td>
-        <td><a href='<?php echo $avgHeightLink; ?>'><?php echo $stats['avgPageHeight']; ?></a></td>
+        <td><a href='<?php echo $avgWidthLink; ?>'><?php echo round($stats['avgPageWidth'] / 1200, 2); ?>"</a></td>
+        <td><a href='<?php echo $avgHeightLink; ?>'><?php echo round($stats['avgPageHeight'] / 1200, 2); ?>"</a></td>
     </tr>
     <tr class='sd'>
         <td>Standard Deviation</td>

@@ -33,8 +33,8 @@ $pagesLink = $baseFrontPageUrl. 'pages='. $frontPage->pages;
         <th>Pages</th>
     </thead>
     <tbody>
-        <td><?php echo $frontPage->page_width; ?></td>
-        <td><?php echo $frontPage->page_height; ?></td>
+        <td><?php echo $frontPage->getWidth(); ?></td>
+        <td><?php echo $frontPage->getHeight(); ?></td>
         <td><a href='<?php echo $columnsLink; ?>'><?php echo $frontPage->columns; ?></a></td>
         <td><a href='<?php echo $pagesLink; ?>'><?php echo $issue->pages; ?></a></td>
     </tbody>
