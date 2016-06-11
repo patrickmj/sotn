@@ -62,8 +62,8 @@ $avgHeightLink = $baseFrontPageUrl. 'columns='. $stats['avgPageHeight'];
     <tr class='sd'>
         <td>Standard Deviation</td>
         <td><?php echo $stats['stdColumns']; ?></td>
-        <td><?php echo $stats['stdPageWidth']; ?></td>
-        <td><?php echo $stats['stdPageHeight']; ?></td>
+        <td><?php echo round( $stats['stdPageWidth'] / 1200, 2); ?></td>
+        <td><?php echo round( $stats['stdPageHeight'] / 1200, 2); ?></td>
     </tr>
 </table>
 
