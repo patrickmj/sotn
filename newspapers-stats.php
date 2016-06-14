@@ -20,15 +20,15 @@ if ( isset($newspaper)) {
 
 $maxColumnsLink = $baseFrontPageUrl. 'columns='. $stats['maxColumns'];
 $minColumnsLink = $baseFrontPageUrl. 'columns='. $stats['minColumns'];
-$avgColumnsLink = $baseFrontPageUrl. 'columns='. $stats['avgColumns'];
+$avgColumnsLink = $baseFrontPageUrl. 'columns='. round($stats['avgColumns']);
 
 $maxWidthLink = $baseFrontPageUrl. 'width='. $stats['maxPageWidth'];
 $minWidthLink = $baseFrontPageUrl. 'width='. $stats['minPageWidth'];
 $avgWidthLink = $baseFrontPageUrl. 'width='. $stats['avgPageWidth'];
 
-$maxHeightLink = $baseFrontPageUrl. 'columns='. $stats['maxPageHeight'];
-$minHeightLink = $baseFrontPageUrl. 'columns='. $stats['minPageHeight'];
-$avgHeightLink = $baseFrontPageUrl. 'columns='. $stats['avgPageHeight'];
+$maxHeightLink = $baseFrontPageUrl. 'height='. $stats['maxPageHeight'];
+$minHeightLink = $baseFrontPageUrl. 'height='. $stats['minPageHeight'];
+$avgHeightLink = $baseFrontPageUrl. 'height='. $stats['avgPageHeight'];
 
 
 ?>

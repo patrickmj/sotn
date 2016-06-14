@@ -35,8 +35,8 @@ $thumbDown = web_path_to('images/silk-icons/thumb_down.png');
         </thead>
         <tbody>
             <td><?php echo $issue->pages; ?></td>
-            <td><?php echo $frontPage->page_width; ?></td>
-            <td><?php echo $frontPage->page_height; ?></td>
+            <td><?php echo $frontPage->getWidth(); ?></td>
+            <td><?php echo $frontPage->getHeight(); ?></td>
             <td class='newspapers-columns'><?php echo $frontPage->columns; ?>
                 <span class='corrections-button'><img src='<?php echo $thumbDown; ?>'></img>Correct the data:</span>
                 <input type='text' size='2' class='columns-correction' />
