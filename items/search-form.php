@@ -67,7 +67,7 @@ $statesArray = array(
 
 <form <?php echo tag_attributes($formAttributes); ?>>
     <div id="search-keywords" class="field">
-        <?php echo $this->formLabel('keyword-search', __('Search for Keywords')); ?>
+        <h3><?php echo $this->formLabel('keyword-search', __('Search for Keywords')); ?></h3>
         <div class="inputs">
         <?php
             echo $this->formText(
@@ -79,7 +79,7 @@ $statesArray = array(
         </div>
     </div>
     <div id="search-narrow-by-fields" class="field">
-        <div class="label"><?php echo __('Narrow by Specific Fields'); ?></div>
+        <h3><div class="label"><?php echo __('Narrow by Specific Fields'); ?></div></h3>
         <div class="inputs">
         <?php
         // If the form has been submitted, retain the number of search
@@ -150,7 +150,7 @@ $statesArray = array(
     </div>
 
     <div id="search-by-range" class="field">
-        <?php echo $this->formLabel('range', __('Search by a range of ID#s (example: 1-4, 156, 79)')); ?>
+        <h3><?php echo $this->formLabel('range', __('Search by a range of Item (i.e, Newspaper Front Page) ID#s (example: 1-4, 156, 79)')); ?></h3>
         <div class="inputs">
         <?php
             echo $this->formText('range', @$_GET['range'],
@@ -161,7 +161,7 @@ $statesArray = array(
     </div>
 
     <div class="field">
-        <?php echo $this->formLabel('collection-search', __('Search By Newspaper')); ?>
+        <h3><?php echo $this->formLabel('collection-search', __('Search By Newspaper')); ?></h3>
         <div class="inputs">
         <?php
             echo $this->formSelect(
@@ -175,7 +175,7 @@ $statesArray = array(
     </div>
     
     <div class="field states">
-        <?php echo $this->formLabel('states', 'States'); ?>
+        <h3><?php echo $this->formLabel('states', 'States'); ?></h3>
         <div class="inputs">
         <?php
             echo $this->formMultiCheckbox(
@@ -262,6 +262,7 @@ $statesArray = array(
     </div>
     
     <h3>Width</h3>
+    <p>Current (2016-06-15) Average Width: <?php echo round(NEWSPAPERS_AVG_WIDTH / 1200, 2); ?>"</p>
     <div class='exact-before-after'>
     <div class="field">
         <?php echo $this->formLabel('width', 'Approximate width (in inches)'); ?>
@@ -298,6 +299,7 @@ $statesArray = array(
     </div>
     
     <h3>Height</h3>
+    <p>Current (2016-06-15) Average Height: <?php echo round(NEWSPAPERS_AVG_HEIGHT / 1200, 2); ?>"</p>
     <div class='exact-before-after'>
     <div class="field">
         <?php echo $this->formLabel('height', 'Approximate height (in inches)'); ?>
