@@ -174,20 +174,21 @@ $statesArray = array(
         </div>
     </div>
     
-    <div class="field">
+    <div class="field states">
         <?php echo $this->formLabel('states', 'States'); ?>
         <div class="inputs">
-        <?php 
+        <?php
             echo $this->formMultiCheckbox(
                 'states',
                 @$_REQUEST['states'],
-                array(),
+                array('class' => 'state-input'),
                 $statesArray
             );
         ?>
         </div>
     </div>
     
+    <h3>Columns</h3>
     <div class='exact-before-after'>
     <div class="field">
         <?php echo $this->formLabel('columns', 'Exact Columns'); ?>
@@ -224,6 +225,7 @@ $statesArray = array(
     </div>
     </div>
     
+    <h3>Dates</h3>
     <div class='exact-before-after'>
     <div class="field">
         <?php echo $this->formLabel('fp_date', 'Exact Date (YYYY-MM-DD)'); ?>
@@ -259,7 +261,7 @@ $statesArray = array(
     </div>
     </div>
     
-    
+    <h3>Width</h3>
     <div class='exact-before-after'>
     <div class="field">
         <?php echo $this->formLabel('width', 'Approximate width (in inches)'); ?>
@@ -295,6 +297,7 @@ $statesArray = array(
     </div>
     </div>
     
+    <h3>Height</h3>
     <div class='exact-before-after'>
     <div class="field">
         <?php echo $this->formLabel('height', 'Approximate height (in inches)'); ?>
