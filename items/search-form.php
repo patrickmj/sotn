@@ -230,7 +230,7 @@ $statesArray = array(
         <div class="inputs">
         <?php 
             echo $this->formText(
-                'dp_date'
+                'fp_date'
             );
         ?>
         </div>
