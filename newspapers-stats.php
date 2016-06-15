@@ -22,13 +22,13 @@ $maxColumnsLink = $baseFrontPageUrl. 'columns='. $stats['maxColumns'];
 $minColumnsLink = $baseFrontPageUrl. 'columns='. $stats['minColumns'];
 $avgColumnsLink = $baseFrontPageUrl. 'columns='. round($stats['avgColumns']);
 
-$maxWidthLink = $baseFrontPageUrl. 'width='. $stats['maxPageWidth'];
-$minWidthLink = $baseFrontPageUrl. 'width='. $stats['minPageWidth'];
-$avgWidthLink = $baseFrontPageUrl. 'width='. $stats['avgPageWidth'];
+$maxWidthLink = $baseFrontPageUrl. 'width='. $stats['maxPageWidth'] / 1200;
+$minWidthLink = $baseFrontPageUrl. 'width='. $stats['minPageWidth'] / 1200;
+$avgWidthLink = $baseFrontPageUrl. 'width='. $stats['avgPageWidth'] / 1200;
 
-$maxHeightLink = $baseFrontPageUrl. 'height='. $stats['maxPageHeight'];
-$minHeightLink = $baseFrontPageUrl. 'height='. $stats['minPageHeight'];
-$avgHeightLink = $baseFrontPageUrl. 'height='. $stats['avgPageHeight'];
+$maxHeightLink = $baseFrontPageUrl. 'height='. $stats['maxPageHeight'] / 1200;
+$minHeightLink = $baseFrontPageUrl. 'height='. $stats['minPageHeight'] / 1200;
+$avgHeightLink = $baseFrontPageUrl. 'height='. $stats['avgPageHeight'] / 1200;
 
 
 ?>
