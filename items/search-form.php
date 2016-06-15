@@ -135,7 +135,7 @@ $statesArray = array(
     <h3>Dates</h3>
     <div class='exact-before-after'>
     <div class="field">
-        <?php echo $this->formLabel('fp_date', 'Exact Date (YYYY-MM-DD)'); ?>
+        <?php echo $this->formLabel('fp_date', 'Exact Date (YYYY-MM-DD, YYYY-MM or YYYY)'); ?>
         <div class="inputs">
         <?php 
             echo $this->formText(
