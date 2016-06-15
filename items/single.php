@@ -60,16 +60,4 @@ $thumbDown = web_path_to('images/silk-icons/thumb_down.png');
    
    <div style='clear:both'></div>
    
-     <!-- The following prints a list of all tags associated with the item -->
-    <?php if (metadata($item,'has tags')): ?>
-    <div id="item-tags" class="element">
-        <h3><?php echo __('Tags'); ?></h3>
-        <div class="element-text"><?php echo tag_string('item'); ?></div>
-    </div>
-    <?php endif;?>
-
-    <!-- Items metadata -->
-    <div id="item-metadata">
-        <?php echo all_element_texts($item); ?>
-    </div>
 </div>
