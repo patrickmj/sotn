@@ -28,6 +28,10 @@ $sortLinks[__('Date Added')] = 'added';
     <span class="sort-label"><?php echo __('Sort by: '); ?></span><?php echo browse_sort_links($sortLinks); ?>
 </div>
  -->
+<div style='clear:both'>
+<p>Statistics presented here reflect the newspapers on the current page.
+    The full data is on the <a href='/overall-newspaper-statistics'>Overall Statistics page</a></p> 
+</div>
 <?php
 
     echo $this->partial('newspapers-stats.php', 
